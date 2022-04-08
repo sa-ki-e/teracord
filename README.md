@@ -3,7 +3,7 @@
 ## サイト概要
 
 ### サイトテーマ
-お寺好きが見て癒されるような寺院や仏像などの写真を記録する、お寺(tera)の記録(record)サイト。
+お寺好きが見て癒されるような寺院や仏像などの写真を記録する、お寺(tera)の記録(record)サイト。    
 ![butuzo](https://user-images.githubusercontent.com/98303399/162345912-8e6a3002-4c2f-4e7a-874c-6a613fdb0ceb.png)
 ![tera](https://user-images.githubusercontent.com/98303399/162345918-bf6bef38-1d67-4d3b-b5ba-a7b75b6da6fd.png)
 
