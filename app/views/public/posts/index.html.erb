@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-10 mx-auto">
+      <h4>(全<%= @posts.count %>件)</h4>
+      <div class="d-flex flex-wrap">
+      <% @posts.each do |post| %>
+        <%= link_to post_path(post.id) do %>
+          <%#= image_tag post.get_image, size:'160x160', class: 'shadow' %>
+          <%= post.genre.name %></td>
+          <%= post.title %>
+        <% end %>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>
