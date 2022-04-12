@@ -5,12 +5,32 @@
         <%= @post.genre.name %></td>
         <%= @post.title %>
         <% if @post.image.attached? %>
-          <%= image_tag @post.image, size: "100×100" %>
-        <% else %>
-          <%= image_tag "no_image", size: "100x100" %>
+            <%= image_tag @post.image.variant(gravity: :center, resize:"200x200", crop:"640x640+0+0").processed %>
+          <% else %>
+            <%= image_tag "no_image", size: "100x100" %>
         <% end %>
-        <%= link_to "編集", edit_post_path(@post.id) %>
-        <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+        <% if @post.user == current_user %>
+          <%= link_to "編集", edit_post_path(@post.id) %>
+          <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+        <% end %>
+      </div>
+      <div>
+        <p>コメント件数：<%= @post.comments.count %></p>
+        <% @post.comments.each do |comment| %>
+        <div class="d-flex flex-wrap">
+          <%= comment.user.name %>
+          <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+          <% if comment.user == current_user %>
+            <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete %>
+          <% end %>
+        </div>
+        <% end %>
+      </div>
+      <div>
+        <%= form_with model: [@post, @comment] do |f| %>
+          <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+          <%= f.submit "送信する" %>
+        <% end %>
       </div>
     </div>
   </div>

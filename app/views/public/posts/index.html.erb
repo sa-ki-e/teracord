@@ -13,6 +13,7 @@
           <% else %>
             <%= image_tag "no_image", size: "100x100" %>
           <% end %>
+          <%= post.comments.count %>コメント
         <% end %>
       <% end %>
       </div>

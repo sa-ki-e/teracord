@@ -20,7 +20,7 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     #@user = @post.user
-    #@post_comment = PostComment.new#コメントを投稿するためのインスタンス変数
+    @comment = Comment.new
   end
 
   def edit
