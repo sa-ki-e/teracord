@@ -8,6 +8,11 @@
           <%#= image_tag post.get_image, size:'160x160', class: 'shadow' %>
           <%= post.genre.name %></td>
           <%= post.title %>
+          <% if post.image.attached? %>
+            <%= image_tag post.image.variant(gravity: :center, resize:"200x200", crop:"640x640+0+0").processed %>
+          <% else %>
+            <%= image_tag "no_image", size: "100x100" %>
+          <% end %>
         <% end %>
       <% end %>
       </div>

@@ -1,2 +1,61 @@
-<h1>Public::Posts#edit</h1>
-<p>Find me in app/views/public/posts/edit.html.erb</p>
+<!--<%# if @post.errors.any? %>-->
+<!--      <%#= @post.errors.count %>error prohibited this obj from being saved:-->
+<!--      <ul>-->
+<!--        <%# @post.errors.full_messages.each do |message| %>-->
+<!--        <li><%#= message %></li>-->
+<!--        <%# end %>-->
+<!--      </ul>-->
+<!--    <%# end %>-->
+<div class='container'>
+  <div class='row'>
+    <div class="col-md-10 px-5 px-sm-0 mx-auto">
+      <h2 class="mt-4">投稿の編集</h2>
+      <%= form_with model: @post, local: true do |f| %>
+      <% if @post.image.attached? %>
+          <%= image_tag @post.image, id: :image_prev, size: "100×100" %>
+        <% else %>
+          <%= image_tag "no_image", size: "100x100" %>
+        <% end %>
+
+
+      <div class="form-group mt-4">
+        <%= f.label :image, "画像の変更はこちら" %>
+        <%= f.file_field :image, id: :post_image, accept: "image/*" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :genre, "ジャンル" %>
+        <%= f.collection_select :genre_id, Genre.all, :id, :name, {prompt: "選択してください"}, {class: "new-wrapper__main__input-select"} %>
+      </div>
+      <div class="form-group">
+        <%= f.label :title, "タイトル" %>
+        <%= f.text_field :title, class: "form-control post_title" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :caption, "説明" %>
+        <%= f.text_area :caption, class: "form-control post_caption" %>
+      </div>
+      <div class="form-group">
+        <%= f.submit "保存", class: 'btn btn-success' %>
+      </div>
+      <% end %>
+
+      <script type="text/javascript">
+        $(function() {
+         function readURL(input) {
+           if (input.files && input.files[0]) {
+             var reader = new FileReader();
+             reader.onload = function (e) {
+               $('#image_prev').attr('src', e.target.result);
+             }
+             reader.readAsDataURL(input.files[0]);
+           }
+         }
+         $("#post_image").change(function(){
+           readURL(this);
+         });
+        });
+      </script>
+
+    </div>
+  </div>
+</div>

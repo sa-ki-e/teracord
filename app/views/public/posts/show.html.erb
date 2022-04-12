@@ -1,2 +1,17 @@
-<h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-10 mx-auto">
+      <div class="d-flex flex-wrap">
+        <%= @post.genre.name %></td>
+        <%= @post.title %>
+        <% if @post.image.attached? %>
+          <%= image_tag @post.image, size: "100×100" %>
+        <% else %>
+          <%= image_tag "no_image", size: "100x100" %>
+        <% end %>
+        <%= link_to "編集", edit_post_path(@post.id) %>
+        <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+      </div>
+    </div>
+  </div>
+</div>
