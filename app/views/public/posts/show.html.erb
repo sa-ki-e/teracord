@@ -14,6 +14,19 @@
           <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
         <% end %>
       </div>
+      <% if @post.liked_by?(current_user) %>
+        <p>
+          <%= link_to post_likes_path(@post), method: :delete do %>
+          ♥<%= @post.likes.count %> いいね
+        <% end %>
+        </p>
+        <% else %>
+        <p>
+          <%= link_to post_likes_path(@post), method: :post do %>
+          ♡<%= @post.likes.count %> いいね
+        <% end %>
+        </p>
+      <% end %>
       <div>
         <p>コメント件数：<%= @post.comments.count %></p>
         <% @post.comments.each do |comment| %>
