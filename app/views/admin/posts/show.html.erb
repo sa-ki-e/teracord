@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-10 mx-auto">
+      <div class="d-flex flex-wrap">
+        <%= @post.genre.name %></td>
+        <%= @post.title %>
+        <%= @user.name %>
+        <% if @post.image.attached? %>
+            <%= image_tag @post.image.variant(gravity: :center, resize:"200x200", crop:"640x640+0+0").processed %>
+          <% else %>
+            <%= image_tag "no_image", size: "100x100" %>
+        <% end %>
+          <%= link_to "削除", admin_post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+      </div>
+      <%= @post.likes.count %> いいね
+      <div>
+        <p>コメント件数：<%= @post.comments.count %></p>
+        <% @post.comments.each do |comment| %>
+        <div class="d-flex flex-wrap">
+          <%= comment.user.name %>
+          <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+            <%= link_to "削除", admin_comment_path(comment), method: :delete %>
+
+        </div>
+        <% end %>
+      </div>
+      
+    </div>
+  </div>
+</div>

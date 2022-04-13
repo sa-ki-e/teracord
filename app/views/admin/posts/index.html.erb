@@ -4,7 +4,7 @@
       <h4>(全<%= @posts.count %>件)</h4>
       <div class="d-flex flex-wrap">
       <% @posts.each do |post| %>
-        <%= link_to post_path(post.id) do %>
+        <%= link_to admin_post_path(post.id) do %>
           <%= post.genre.name %></td>
           <%= post.title %>
           <% if post.image.attached? %>

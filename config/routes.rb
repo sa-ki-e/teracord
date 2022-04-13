@@ -28,8 +28,10 @@ Rails.application.routes.draw do
     # end
 
   namespace :admin do
-    root to: "users#index" #管理者側TOPページ
+    #root to: "users#index" #管理者側TOPページ
     resources :users, only: [:index, :show, :edit, :update]
     resources :genres, only: [:index, :create, :edit, :update]
+    resources :posts, only: [:index, :show, :destroy]
+    resources :comments, only: [:destroy]
   end
 end

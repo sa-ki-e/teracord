@@ -11,11 +11,11 @@ class Public::RegistrationsController < Devise::RegistrationsController
   def configure_permitted_parameters #メソッド：sign_upの際にnameのデータ操作を許可する
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
   end
-  
+
   def after_sign_up_path_for(resource) #sign_up後の遷移先
-  root_path(resource)
+  posts_path(resource)
   end
-  
+
   # GET /resource/sign_up
   # def new
   #   super

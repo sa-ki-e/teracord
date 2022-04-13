@@ -20,6 +20,7 @@ class Public::PostsController < ApplicationController
   end
 
   def show
+    @user = @post.user
     @comment = Comment.new
   end
 
