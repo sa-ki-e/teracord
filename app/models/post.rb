@@ -10,6 +10,14 @@ class Post < ApplicationRecord
   def liked_by?(user)
     likes.exists?(user_id: user.id)#ユーザーがいいねしているか？
   end
+  
+  def self.search(search)
+    if search != ""
+      Post.where(['title LIKE(?) OR caption LIKE(?)', "%#{search}%", "%#{search}%"])
+    else
+      Post.includes(:user).order('created_at DESC')
+    end
+  end
   # def get_image(width, height)
   #   unless image.attached?
   #     file_path = Rails.root.join('app/assets/images/no_image.jpg')

@@ -17,6 +17,7 @@ class Public::PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    #@genres = Genre.all#
   end
 
   def show
@@ -39,6 +40,11 @@ class Public::PostsController < ApplicationController
     @post.destroy
     redirect_to posts_path
   end
+  
+  def search
+  @searches = Post.search(params[:keyword])
+  #@genre = Genre.find(params[:id])#
+  end
 
   private
   def set_post
@@ -48,5 +54,9 @@ class Public::PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:title, :caption, :user_id, :genre_id, :image)
   end
+  
+  # def genre_params
+  #   params.require(:genre).permit(:name)#
+  # end
 
 end
