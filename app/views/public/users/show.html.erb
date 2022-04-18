@@ -1,31 +1,30 @@
-  <div class="container">
-  <div class="row mt-5">
-    <div class="col-md-10 mx-auto">
-      <p><%#= link_to "お気に入り一覧", likes_user_path(@user) %></p>
-      いいね一覧
-        <% @like_posts.each do |post| %>
-          <%= link_to post_path(post.id) do %>
-            <%= post.genre.name %>
-            <%= post.title %>
-            <% if post.image.attached? %>
-              <%= image_tag post.image.variant(gravity: :center, resize:"200x200", crop:"640x640+0+0").processed %>
-            <% else %>
-              <%= image_tag "no_image", size: "100x100" %>
-            <% end %>
-          <%= post.comments.count %>コメント
-          <%= post.likes.count %> いいね
+<div class="container">
+  <p class="h3 text-light mt-5 text-center">いいね一覧(全<%= @like_posts.count %>件)</p>
+  <ul>
+    <% @like_posts.each do |post| %>
+    <li>
+      <%= link_to post_path(post.id) do %>
+        <% if post.image.attached? %>
+          <%= image_tag post.image %>
+        <% else %>
+          <%= image_tag "no_image", size: "100x100" %>
         <% end %>
+      <%= post.comments.count %>コメント
+      <%= post.likes.count %> いいね</p>
       <% end %>
-      <h3><%= @user.name %>さんの投稿一覧</h3>
-      <h4>(全<%= @posts.count %>件)</h4>
-      <div class="d-flex flex-wrap">
+    </li>
+    <% end %>
+  </ul>
+  <p class="h3 text-light mt-5 text-center">
+    <%= @user.name %>さんの投稿(全<%= @posts.count %>件)</p>
+  <ul>
+    <li>
       <% @posts.each do |post| %>
         <%= link_to post_path(post.id) do %>
-          <%#= image_tag post.get_image, size:'160x160', class: 'shadow' %>
           <%= post.genre.name %>
           <%= post.title %>
           <% if post.image.attached? %>
-            <%= image_tag post.image.variant(gravity: :center, resize:"200x200", crop:"640x640+0+0").processed %>
+            <%= image_tag post.image %>
           <% else %>
             <%= image_tag "no_image", size: "100x100" %>
           <% end %>
@@ -33,7 +32,8 @@
           <%= post.likes.count %> いいね
         <% end %>
       <% end %>
-      </div>
-    </div>
-  </div>
+    </li>
+  </ul>
 </div>
+
+ 

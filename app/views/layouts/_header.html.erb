@@ -1,36 +1,53 @@
-<header>
-  <% if user_signed_in? %>
-    <p class="active"><%= current_user.name %>さん、teracordへようこそ！</p>
-    <li>
-      <%= link_to "ユーザーログアウト", destroy_user_session_path, method: :delete %>
-    </li>
-    <li>
-      <%= link_to "新規投稿", new_post_path %>
-    </li>
-    <li>
-      <%= link_to "投稿一覧", posts_path %>
-    </li>
-    <li>
-      <%= link_to "マイページ", user_path(current_user.id) %>
-    </li>
-    
-    
-  <% elsif admin_signed_in? %>
-    <li>
-      <%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete %>
-    </li>
-    <li>
-      <%= link_to "ユーザー一覧", admin_users_path %>
-    </li>
-    <li>
-      <%= link_to "投稿一覧", admin_posts_path %>
-    </li>
-  <% else %>
-    <li>
-      <%= link_to "ユーザー新規登録", new_user_registration_path %>
-    </li>
-    <li>
-      <%= link_to "ユーザーログイン", new_user_session_path %>
-    </li>
-  <% end %>
-</header>
+<nav class="navbar navbar-expand-lg navbar-light p-4 shadow-sm" style="background:#ffffff">
+  <div class="container-fluid">
+    <a class="navbar-brand ml-5" href="/"><span>teracord</span></a>
+    <% if user_signed_in? %>
+      <%= current_user.name %>さん、teracordへようこそ！
+      <%= render "layouts/search" %>
+      <ul class="navbar-nav mr-5">
+        <span class="my-auto mr-4 ml-4 me-5 fs-6 link-dark-1 d-none d-lg-inline-block">
+          <%= link_to "Home", posts_path %>
+        </span>
+        <div class="d-inline-flex rounded-pill px-5 py-1" style="background:rgba(0,0,0,0.1)">
+          <a href="/posts/new" class="mr-4 fs-6 link-dark-1 d-none d-lg-inline-block">投稿する</a>
+          <%= link_to "マイページ", user_path(current_user.id) %>
+        </div>
+        <span class="my-auto ml-4 me-5 fs-6 link-dark-1 d-none d-lg-inline-block">
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        </span>
+      </ul>
+    <% elsif admin_signed_in? %>
+      <ul class="navbar-nav mr-5">
+        <div class="d-inline-flex rounded-pill px-5 py-1" style="background:rgba(0,0,0,0.1)">
+          <span class="my-auto me-5 fs-6 link-dark-1 d-none d-lg-inline-block">
+            <%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete %>
+          </span>
+        </div>
+        <div class="d-inline-flex rounded-pill px-5 py-1" style="background:rgba(0,0,0,0.1)">
+          <span class="my-auto me-5 fs-6 link-dark-1 d-none d-lg-inline-block">
+            <%= link_to "ユーザー一覧", admin_users_path %>
+          </span>
+        </div>
+        <div class="d-inline-flex rounded-pill ml-2 px-5 py-1" style="background:rgba(0,0,0,0.1)">
+          <span class="my-auto me-5 fs-6 link-dark-1 d-none d-lg-inline-block">
+            <%= link_to "投稿一覧", admin_posts_path %>
+           </span>
+        </div>
+      </ul>
+    <% else %>
+      <ul class="navbar-nav mr-5">
+        <div class="d-inline-flex rounded-pill px-5 py-1" style="background:rgba(0,0,0,0.1)">
+          <span class="my-auto me-5 fs-6 link-dark-1 d-none d-lg-inline-block">
+            <%= link_to "新規登録", new_user_registration_path %>
+          </span>
+        </div>
+        <div class="d-inline-flex rounded-pill ml-2 px-5 py-1" style="background:rgba(0,0,0,0.1)">
+          <span class="my-auto me-5 fs-6 link-dark-1 d-none d-lg-inline-block">
+            <%= link_to "ログイン", new_user_session_path %>
+          </span>
+        </div>
+      </ul>
+    <% end %>
+  </div>
+</nav>
+

@@ -10,8 +10,10 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body style="background-color:#313233;">
     <%= render "layouts/header" %>
+    <main>
     <%= yield %>
+    </main>
   </body>
 </html>

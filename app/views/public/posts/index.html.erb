@@ -1,31 +1,24 @@
 <div class="container">
-  <div class="row mt-5">
-    <div class="col-md-10 mx-auto">
-      
-      
-      
-      <%= form_with(url: search_posts_path, local: true, method: :get, class: "search-form") do |f| %>
-      <%= f.collection_select :genre_id, Genre.all, :id, :name %>
-  <%= f.text_field :keyword, placeholder: "キーワード", class: "search-input" %>
-  <%= f.submit "検索", class: "search-btn" %>
-<% end %>
-      <h4>(全<%= @posts.count %>件)</h4>
-      <div class="d-flex flex-wrap">
-      <% @posts.each do |post| %>
-        <%= link_to post_path(post.id) do %>
-          <%= post.genre.name %></td>
-          <%= post.title %>
-          <% if post.image.attached? %>
-            <%= image_tag post.image.variant(gravity: :center, resize:"200x200", crop:"640x640+0+0").processed %>
-          <% else %>
-            <%= image_tag "no_image", size: "100x100" %>
-          <% end %>
-          <%= post.comments.count %>コメント
-          <%= post.likes.count %> いいね
+  <h4>(全<%= @posts.count %>件)</h4>
+  <ul>
+    <% @posts.each do |post| %>
+    <li>
+      <%= link_to post_path(post.id) do %>
+        <% if post.image.attached? %>
+          <%= image_tag post.image, size: "100x100" %>
+        <% else %>
+          <%= image_tag "no_image", size: "100x100" %>
         <% end %>
+      <%= post.genre.name %></td>
+      <%= post.title %>
+        <!--<div class="card-img-overlay text-white">-->
+        <!--<i class="fa-light fa-comment"></i><%#= post.comments.count %><!--<span class="fa-layers-text fa-inverse" data-fa-transform="shrink-8 down-3" style="font-weight:900">27</span>-->-->
+        <!--<i class="fa-solid fa-thumbs-up"></i><%#= post.likes.count %>-->
+        <!--</div>-->
       <% end %>
-      
-      </div>
-    </div>
-  </div>
+    </li>
+    <% end %>
+  </ul>
 </div>
+
+

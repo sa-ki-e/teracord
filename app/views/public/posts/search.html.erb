@@ -1,13 +1,11 @@
 <div class="container">
   <div class="row mt-5">
     <div class="col-md-10 mx-auto">
-      <%= form_with(url: search_posts_path, local: true, method: :get, class: "search-form") do |f| %>
-  <%= f.text_field :keyword, placeholder: "キーワード", class: "search-input" %>
-  <%= f.submit "検索", class: "search-btn" %>
-<% end %>
+
       <% if @searches == [] %>
 <h2 class = "seach-result">検索結果はありません</h2>
 <% else %>
+<h4>(検索結果　<%= @searches.count %>件)</h4>
 <div class = "post-contents">
   <ul class = "post-list">
     <% @searches.each do |post| %>

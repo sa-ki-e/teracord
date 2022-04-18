@@ -12,7 +12,7 @@
       <h2 class="mt-4">投稿の編集</h2>
       <%= form_with model: @post, local: true do |f| %>
       <% if @post.image.attached? %>
-          <%= image_tag @post.image.variant(gravity: :center, resize:"200x200", crop:"640x640+0+0").processed, id: :image_prev, size: "100×100" %>
+          <%= image_tag @post.image.variant(gravity: :center, resize:"200x200", crop:"640x640+0+0").processed, id: :image_prev %>
         <% else %>
           <%= image_tag "no_image", size: "100x100" %>
         <% end %>
