@@ -6,11 +6,11 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
   validates :title, presence:true
   validates :caption, presence:true, length: { maximum: 200 }
-  
+
   def liked_by?(user)
     likes.exists?(user_id: user.id)#ユーザーがいいねしているか？
   end
-  
+
   def self.search(search)
     if search != ""
       Post.where(['title LIKE(?) OR caption LIKE(?)', "%#{search}%", "%#{search}%"])
