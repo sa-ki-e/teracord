@@ -16,7 +16,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @post = Post.new#モーダル表示用
+    @post_new = Post.new#モーダル表示用
     @posts = Post.all
   end
 
