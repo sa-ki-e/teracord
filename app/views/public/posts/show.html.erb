@@ -52,9 +52,11 @@
               by<%= comment.user.name %>
               <%= comment.created_at.strftime('%Y/%m/%d') %>
               </small>
-              <% if comment.user == current_user %>
-                <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete %>
-              <% end %>
+              <button type="button" class="btn btn-outline-danger btn-sm">
+                <% if comment.user == current_user %>
+                  <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete %>
+                <% end %>
+              </button>
             </div>
           </div>
         </div>
