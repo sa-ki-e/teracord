@@ -1,9 +1,9 @@
 class Public::PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
-  def new
-    @post = Post.new
-  end
+  # def new
+  #   @post = Post.new
+  # end
 
   def create
     post = Post.new(post_params)
@@ -16,8 +16,8 @@ class Public::PostsController < ApplicationController
   end
 
   def index
+    @post = Post.new#モーダル表示用
     @posts = Post.all
-    #@genres = Genre.all#
   end
 
   def show

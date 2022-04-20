@@ -1,0 +1,45 @@
+<div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content text-dark">
+      <div class="modal-header justify-content-center">
+       <h2>新規投稿</h2>
+      </div>
+      <div class="modal-body">
+        <%= form_with model: post, url: posts_path, local: true do |f| %>
+        <div class="row justify-content-center">
+          <div class="form-group mt-4 ">
+            <%= f.label :image, "画像" %>
+            <%= f.file_field :image, accept: "image/*" %>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="form-group">
+            <%= f.label :genre, "ジャンル" %>
+            <%= f.collection_select :genre_id, Genre.all, :id, :name, {prompt: "選択してください"}, {class: "new-wrapper__main__input-select"} %>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="form-group">
+            <%= f.label :title, "タイトル" %>
+            <%= f.text_field :title %>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="form-group">
+            <%= f.label :caption, "説明" %>
+            <%= f.text_area :caption %>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="form-group">
+            <%= f.submit '投稿' %>
+          </div>
+        </div>
+        <% end %>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">閉じる</button>
+      </div>
+    </div>
+  </div>
+</div>

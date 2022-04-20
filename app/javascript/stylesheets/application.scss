@@ -1,17 +1,34 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
+//header//
+.logo_area{
+  font-family: sans-serif;
+}
+span.mgr-10{
+  margin-right: 15px;
+  color: #313233;
+}
+li.nav-item{
+  margin-right: 10px;
+}
+
+//body//
+.container{
+  min-height: 100vh;
+}
+
 //投稿一覧共通部分//
-ul{
+ul.index{
   display: flex;
   flex-wrap: wrap;
 }
-li{
+li.index_items{
   position: relative;
   width: 25%;
   list-style: none;
 }
-li:before{
+li.index_items:before{
   content: "";
   display: block;
   padding-top: 100%;
@@ -27,4 +44,23 @@ img{
   margin: auto;
   object-fit: cover;
 }
+.card-img-overlay{
+  opacity: 0;
+  &:hover.card-img-overlay{
+    opacity: 1;
+    padding: 0;
+    top: calc(50% - 0.5rem);
+    text-align: center;
+    font-weight: bold;
+  }
+}
+.shadow {
+  text-shadow: 0 0 3px #313233;
+  
+}
 
+//footer//
+footer{
+    position: absolute;/*←絶対位置*/
+    bottom: 0; /*下に固定*/
+}

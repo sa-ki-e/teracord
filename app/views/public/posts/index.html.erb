@@ -1,24 +1,39 @@
-<div class="container">
-  <h4>(全<%= @posts.count %>件)</h4>
-  <ul>
+<div class="container body text-center my-2">
+  <small class="text-light"><%= @posts.count %> in total</small>
+  <ul class="index my-2">
     <% @posts.each do |post| %>
-    <li>
+    <li class="index_items">
       <%= link_to post_path(post.id) do %>
         <% if post.image.attached? %>
           <%= image_tag post.image, size: "100x100" %>
         <% else %>
           <%= image_tag "no_image", size: "100x100" %>
         <% end %>
-      <%= post.genre.name %></td>
-      <%= post.title %>
-        <div class="card-img-overlay text-white">
-        <i class="fas fa-comment"></i><%#= post.comments.count %><!--<span class="fa-layers-text fa-inverse" data-fa-transform="shrink-8 down-3" style="font-weight:900">27</span>-->
-        <i class="fas fa-thumbs-up"></i><%#= post.likes.count %>
+        <div class="card-img-overlay text-light">
+          <span class="fa-layers fa-fw mr-3" style="background:none">
+            <i class="fas fa-heart shadow" data-fa-transform="grow-12"></i>
+            <span class="fa-layers-text text-muted fa-inverse" data-fa-transform="grow-1" style="font-weight:700">
+              <%= post.likes.count %>
+            </span>
+          </span>
+          <span class="fa-layers fa-fw" style="background:none">
+            <i class="fas fa-comment shadow" data-fa-transform="grow-12"></i>
+            <span class="fa-layers-text text-muted fa-inverse" data-fa-transform="grow-1" style="font-weight:700">
+              <%= post.comments.count %>
+            </span>
+          </span>
         </div>
       <% end %>
     </li>
     <% end %>
   </ul>
 </div>
+<!-- ボタン・リンククリック後に表示される画面の内容 -->
+<%= render "form", post: @post %><!--＋Postボタン-->
 
 
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>

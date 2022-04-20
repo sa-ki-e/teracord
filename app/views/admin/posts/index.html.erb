@@ -1,22 +1,30 @@
-<div class="container">
-  <div class="row mt-5">
-    <div class="col-md-10 mx-auto">
-      <h4>(全<%= @posts.count %>件)</h4>
-      <div class="d-flex flex-wrap">
-      <% @posts.each do |post| %>
-        <%= link_to admin_post_path(post.id) do %>
-          <%= post.genre.name %></td>
-          <%= post.title %>
-          <% if post.image.attached? %>
-            <%= image_tag post.image.variant(gravity: :center, resize:"200x200", crop:"640x640+0+0").processed %>
-          <% else %>
-            <%= image_tag "no_image", size: "100x100" %>
-          <% end %>
-          <%= post.comments.count %>コメント
-          <%= post.likes.count %> いいね
+<div class="container text-center my-2">
+  <small class="text-light"><%= @posts.count %> in total</small>
+  <ul class="index my-2">
+    <% @posts.each do |post| %>
+    <li class="index_items">
+      <%= link_to admin_post_path(post.id) do %>
+        <% if post.image.attached? %>
+          <%= image_tag post.image, size: "100x100" %>
+        <% else %>
+          <%= image_tag "no_image", size: "100x100" %>
         <% end %>
+        <div class="card-img-overlay text-light">
+          <span class="fa-layers fa-fw mr-3" style="background:none">
+            <i class="fas fa-heart shadow" data-fa-transform="grow-12"></i>
+            <span class="fa-layers-text text-muted fa-inverse" data-fa-transform="grow-1" style="font-weight:700">
+              <%= post.likes.count %>
+            </span>
+          </span>
+          <span class="fa-layers fa-fw" style="background:none">
+            <i class="fas fa-comment shadow" data-fa-transform="grow-12"></i>
+            <span class="fa-layers-text text-muted fa-inverse" data-fa-transform="grow-1" style="font-weight:700">
+              <%= post.comments.count %>
+            </span>
+          </span>
+        </div>
       <% end %>
-      </div>
-    </div>
-  </div>
+    </li>
+    <% end %>
+  </ul>
 </div>

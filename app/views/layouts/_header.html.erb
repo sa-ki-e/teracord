@@ -1,53 +1,82 @@
 <nav class="navbar navbar-expand-lg navbar-light p-4 shadow-sm" style="background:#ffffff">
   <div class="container-fluid">
-    <a class="navbar-brand ml-5" href="/"><span>teracord</span></a>
-    <% if user_signed_in? %>
+    <a class="navbar-brand ml-5" href="/">
+      <h4>
+        <span class="logo_area">
+          <strong>teracord</strong>
+        </span>
+      </h4>
+    </a>
+    <span class="mgr-10">
+      <% if user_signed_in? %>
       <%= current_user.name %>さん、teracordへようこそ！
-      <%= render "layouts/search" %>
-      <ul class="navbar-nav mr-5">
-        <span class="my-auto mr-4 ml-4 me-5 fs-6 link-dark-1 d-none d-lg-inline-block">
-          <%= link_to "Home", posts_path %>
-        </span>
-        <div class="d-inline-flex rounded-pill px-5 py-1" style="background:rgba(0,0,0,0.1)">
-          <a href="/posts/new" class="mr-4 fs-6 link-dark-1 d-none d-lg-inline-block">投稿する</a>
-          <%= link_to "マイページ", user_path(current_user.id) %>
-        </div>
-        <span class="my-auto ml-4 me-5 fs-6 link-dark-1 d-none d-lg-inline-block">
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-        </span>
+    </span>
+    <%= render "layouts/search" %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <%= link_to posts_path, class: "nav-link text-dark font-weight-bold" do %>
+          <i class="fas fa-images"></i>
+          <span class="logo_area">Home</span>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to user_path(current_user.id), class: "nav-link text-dark font-weight-bold" do %>
+          <i class="fas fa-compact-disc"></i>
+          <span class="logo_area">Records</span>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <button type="button" class="btn btn-light mb-12" data-toggle="modal" data-target="#testModal"><i class="fas fa-plus"></i>Post</button>
+        </li>
+        <li class="nav-item">
+          <%= link_to destroy_user_session_path, method: :delete, class: "nav-link text-dark font-weight-bold" do %>
+          <i class="fas fa-sign-out-alt"></i>
+          <span class="logo_area"></span>Log out</span>
+          <% end %>
+        </li>
       </ul>
-    <% elsif admin_signed_in? %>
-      <ul class="navbar-nav mr-5">
-        <div class="d-inline-flex rounded-pill px-5 py-1" style="background:rgba(0,0,0,0.1)">
-          <span class="my-auto me-5 fs-6 link-dark-1 d-none d-lg-inline-block">
-            <%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete %>
-          </span>
-        </div>
-        <div class="d-inline-flex rounded-pill px-5 py-1" style="background:rgba(0,0,0,0.1)">
-          <span class="my-auto me-5 fs-6 link-dark-1 d-none d-lg-inline-block">
-            <%= link_to "ユーザー一覧", admin_users_path %>
-          </span>
-        </div>
-        <div class="d-inline-flex rounded-pill ml-2 px-5 py-1" style="background:rgba(0,0,0,0.1)">
-          <span class="my-auto me-5 fs-6 link-dark-1 d-none d-lg-inline-block">
-            <%= link_to "投稿一覧", admin_posts_path %>
-           </span>
-        </div>
+      <% elsif admin_signed_in? %>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <%= link_to destroy_admin_session_path, method: :delete, class: "nav-link text-dark font-weight-bold" do %>
+          <i class="fas fa-sign-out-alt"></i>
+          <span class="logo_area">管理者Log out</span>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to admin_users_path, class: "nav-link text-dark font-weight-bold" do %>
+          <i class="fas fa-user-check"></i>
+          <span class="logo_area">会員一覧</span>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to admin_posts_path, class: "nav-link text-dark font-weight-bold" do %>
+          <i class="fas fa-images"></i>
+          <span class="logo_area">投稿一覧</span>
+          <% end %>
+        </li>
       </ul>
-    <% else %>
-      <ul class="navbar-nav mr-5">
-        <div class="d-inline-flex rounded-pill px-5 py-1" style="background:rgba(0,0,0,0.1)">
-          <span class="my-auto me-5 fs-6 link-dark-1 d-none d-lg-inline-block">
-            <%= link_to "新規登録", new_user_registration_path %>
-          </span>
-        </div>
-        <div class="d-inline-flex rounded-pill ml-2 px-5 py-1" style="background:rgba(0,0,0,0.1)">
-          <span class="my-auto me-5 fs-6 link-dark-1 d-none d-lg-inline-block">
-            <%= link_to "ログイン", new_user_session_path %>
-          </span>
-        </div>
+      <% else %>
+      <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <%= link_to new_user_registration_path, class: "nav-link text-dark font-weight-bold" do %>
+            <i class="fas fa-user-plus"></i>
+            <span class="logo_area">新規登録</span>
+            <% end %>
+          </li>
+          <li class="nav-item">
+          <%= link_to new_user_session_path, class: "nav-link text-dark font-weight-bold" do %>
+          <i class="fas fa-sign-in-alt"></i>
+          <span class="logo_area">Log in</span>
+          <% end %>
+        </li>
       </ul>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 </nav>
 
