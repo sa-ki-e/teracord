@@ -1,68 +1,70 @@
-<div class="card mt-4 mx-auto" style="width: 35rem;">
+<div class="card text-dark mt-4 mb-4 mx-auto" style="width: 35rem;">
   <div class="card card-img-top">
-    <% if @post.image.attached? %>
-        <%= image_tag @post.image %>
+  <% if @post.image.attached? %>
+      <%= image_tag @post.image %>
+    <% else %>
+      <%= image_tag "no_image", size: "100x100" %>
+  <% end %>
+  <svg class="card-img-top" width="100%" height="400"></svg>
+  <div class="card-img-overlay">
+    <div class="float-left ml-2">
+    <button type="button" class="btn btn-light" disabled>
+      <%= @post.genre.name %>
+    </button>
+    </div>
+    <div class="float-right mr-2">
+      <% if @post.user == current_user %>
+      <button type="button" class="btn btn-light btn-sm">
+        <% link_to edit_post_path(@post.id) %>編集</button>
+      <button type="button" class="btn btn-light btn-sm">
+        <% link_to post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>削除</button>
+      <% end %>
+    </div>
+  </div>
+  </div>
+  <div class="card-header">
+    <%= @post.title %>
+    <div class="float-right">
+      <% if @post.liked_by?(current_user) %>
+        <%= link_to post_likes_path(@post), method: :delete do %>
+          ♥<%= @post.likes.count %>
+        <% end %>
+        コメント<%= @post.comments.count %>
       <% else %>
-        <%= image_tag "no_image", size: "100x100" %>
-    <% end %>
-    <svg class="card-img-top" width="100%" height="400"></svg>
-    <div class="card-img-overlay">
-      <button type="button" class="btn btn-light" disabled>
-        <%= @post.genre.name %>
-      </button>
-      <div class="float-right">
-        <% if @post.user == current_user %>
-        <button type="button" class="btn btn-outline-secondary">
-          <% link_to edit_post_path(@post.id) %>編集</button>
-        <button type="button" class="btn btn-outline-secondary">
-          <% link_to post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>削除</button>
+        <%= link_to post_likes_path(@post), method: :post do %>
+          ♡<%= @post.likes.count %>
         <% end %>
-      </div>
+        コメント<%= @post.comments.count %>
+      <% end %>
     </div>
+    <p class="card-text">
+      <small class="text-muted"><%= @post.created_at.strftime("%Y/%m/%d") %> by<%= @user.name %></small>
+    </p>
+    <p class="mt-2"><%= @post.caption %></p>
     </div>
-    <div class="card-header">
-      <%= @post.title %>
-      <div class="float-right">
-        <% if @post.liked_by?(current_user) %>
-          <%= link_to post_likes_path(@post), method: :delete do %>
-            ♥<%= @post.likes.count %>
-          <% end %>
-          コメント<%= @post.comments.count %>
-        <% else %>
-          <%= link_to post_likes_path(@post), method: :post do %>
-            ♡<%= @post.likes.count %>
-          <% end %>
-          コメント<%= @post.comments.count %>
-        <% end %>
-      </div>
-      <p class="card-text"><small class="text-muted"><%= @post.created_at.strftime("%Y/%m/%d") %> by<%= @user.name %></small></p>
-      <p class="mt-2"><%= @post.caption %></p>
-      </div>
-      <div class="card-body">
-        <p class="card-text d-flex flex-wrap">
-          <% @post.comments.each do |comment| %>
-          <%= comment.comment %>
-          <small class="text-muted">
-            by<%= comment.user.name %>
-            <%= comment.created_at.strftime('%Y/%m/%d') %>
-          </small>
-          <% if comment.user == current_user %>
-            <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete %>
-          <% end %>
-        </p>
-        <% end %>
-      </span>
-      <div>
+    <div class="card-body">
+      <p class="card-text d-flex flex-wrap">
+        <% @post.comments.each do |comment| %>
+        <div class="col-12 clearfix">
+          <div class="comment-box"><%= comment.comment %>
+            <div class="float-right">
+              <small class="text-muted">
+              by<%= comment.user.name %>
+              <%= comment.created_at.strftime('%Y/%m/%d') %>
+              </small>
+              <% if comment.user == current_user %>
+                <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      </p>
+      <div class="text-center">
         <%= form_with model: [@post, @comment] do |f| %>
-          <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+          <%= f.text_area :comment, rows: '4', cols: "50%", placeholder: "コメントをここに" %>
           <%= f.submit "送信する" %>
         <% end %>
       </div>
     </div>
-
-
-        
-    
-
   </div>
-</div>

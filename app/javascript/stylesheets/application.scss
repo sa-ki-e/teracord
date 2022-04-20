@@ -44,21 +44,26 @@ img{
   margin: auto;
   object-fit: cover;
 }
-.card-img-overlay{
+.records{
   opacity: 0;
-  &:hover.card-img-overlay{
+  padding: 0;
+  top: calc(50% - 0.5rem);
+  text-align: center;
+  margin-top: 50%;
+  font-weight: bold;
+  &:hover.records{
     opacity: 1;
-    padding: 0;
-    top: calc(50% - 0.5rem);
-    text-align: center;
-    font-weight: bold;
   }
 }
 .shadow {
   text-shadow: 0 0 3px #313233;
-  
 }
 
+//show//
+.comment-box {
+  width: 90%;
+  overflow-wrap:  break-word;
+}
 //footer//
 footer{
     position: absolute;/*←絶対位置*/

@@ -10,18 +10,20 @@
           <%= image_tag "no_image", size: "100x100" %>
         <% end %>
         <div class="card-img-overlay text-light">
-          <span class="fa-layers fa-fw mr-3" style="background:none">
-            <i class="fas fa-heart shadow" data-fa-transform="grow-12"></i>
-            <span class="fa-layers-text text-muted fa-inverse" data-fa-transform="grow-1" style="font-weight:700">
-              <%= post.likes.count %>
+          <div class="records">
+            <span class="fa-layers fa-fw mr-3" style="background:none">
+              <i class="fas fa-heart shadow" data-fa-transform="grow-12"></i>
+              <span class="fa-layers-text text-muted fa-inverse" data-fa-transform="grow-1" style="font-weight:700">
+                <%= post.likes.count %>
+              </span>
             </span>
-          </span>
-          <span class="fa-layers fa-fw" style="background:none">
-            <i class="fas fa-comment shadow" data-fa-transform="grow-12"></i>
-            <span class="fa-layers-text text-muted fa-inverse" data-fa-transform="grow-1" style="font-weight:700">
-              <%= post.comments.count %>
+            <span class="fa-layers fa-fw" style="background:none">
+              <i class="fas fa-comment shadow" data-fa-transform="grow-12"></i>
+              <span class="fa-layers-text text-muted fa-inverse" data-fa-transform="grow-1" style="font-weight:700">
+                <%= post.comments.count %>
+              </span>
             </span>
-          </span>
+          </div>
         </div>
       <% end %>
     </li>
