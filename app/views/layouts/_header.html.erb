@@ -30,12 +30,15 @@
           <% end %>
         </li>
         <li class="nav-item">
-          <button type="button" class="btn btn-light mb-12" data-toggle="modal" data-target="#testModal"><i class="fas fa-plus"></i>Post</button>
+          <button type="button" class="btn btn-light mb-12" data-toggle="modal" data-target="#postModal">
+            <i class="fas fa-plus"></i>
+            <span class="logo_area font-weight-bold">Post</span>
+          </button>
         </li>
         <li class="nav-item">
           <%= link_to destroy_user_session_path, method: :delete, class: "nav-link text-dark font-weight-bold" do %>
           <i class="fas fa-sign-out-alt"></i>
-          <span class="logo_area"></span>Log out</span>
+          <span class="logo_area">Log out</span>
           <% end %>
         </li>
       </ul>

@@ -43,6 +43,7 @@ class Public::PostsController < ApplicationController
 
   def search
   @searches = Post.search(params[:keyword])
+  @post_new = Post.new#モーダル表示用
   #@genre = Genre.find(params[:id])#
   end
 

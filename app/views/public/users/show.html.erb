@@ -1,39 +1,79 @@
-<div class="container">
-  <p class="h3 text-light mt-5 text-center">いいね一覧(全<%= @like_posts.count %>件)</p>
-  <ul>
+<div class="container body text-center my-2">
+  <p class="h3 text-light mt-5 text-center">
+    いいね一覧(全<%= @like_posts.count %>件)
+  </p>
+  <ul class="index my-2">
     <% @like_posts.each do |post| %>
-    <li>
+    <li class="index_items">
       <%= link_to post_path(post.id) do %>
         <% if post.image.attached? %>
-          <%= image_tag post.image %>
+          <%= image_tag post.image, size: "100x100" %>
         <% else %>
           <%= image_tag "no_image", size: "100x100" %>
         <% end %>
-      <%= post.comments.count %>コメント
-      <%= post.likes.count %> いいね</p>
+        <div class="card-img-overlay text-light">
+          <div class="records">
+            <span class="fa-layers fa-fw mr-3" style="background:none">
+              <i class="fas fa-heart shadow" data-fa-transform="grow-12"></i>
+              <span class="fa-layers-text text-muted fa-inverse" data-fa-transform="grow-1" style="font-weight:700">
+                <%= post.likes.count %>
+              </span>
+            </span>
+            <span class="fa-layers fa-fw" style="background:none">
+              <i class="fas fa-comment shadow" data-fa-transform="grow-12"></i>
+              <span class="fa-layers-text text-muted fa-inverse" data-fa-transform="grow-1" style="font-weight:700">
+                <%= post.comments.count %>
+              </span>
+            </span>
+          </div>
+        </div>
       <% end %>
     </li>
     <% end %>
   </ul>
   <p class="h3 text-light mt-5 text-center">
-    <%= @user.name %>さんの投稿(全<%= @posts.count %>件)</p>
-  <ul>
-    <li>
-      <% @posts.each do |post| %>
-        <%= link_to post_path(post.id) do %>
-          <%= post.genre.name %>
-          <%= post.title %>
-          <% if post.image.attached? %>
-            <%= image_tag post.image %>
-          <% else %>
-            <%= image_tag "no_image", size: "100x100" %>
-          <% end %>
-          <%= post.comments.count %>コメント
-          <%= post.likes.count %> いいね
+    <%= @user.name %>さんの投稿(全<%= @posts.count %>件)
+  </p>
+  <ul class="index my-2">
+    <% @posts.each do |post| %>
+    <li class="index_items">
+      <%= link_to post_path(post.id) do %>
+        <% if post.image.attached? %>
+          <%= image_tag post.image, size: "100x100" %>
+        <% else %>
+          <%= image_tag "no_image", size: "100x100" %>
         <% end %>
+        <div class="card-img-overlay text-light">
+          <div class="records">
+            <span class="fa-layers fa-fw mr-3" style="background:none">
+              <i class="fas fa-heart shadow" data-fa-transform="grow-12"></i>
+              <span class="fa-layers-text text-muted fa-inverse" data-fa-transform="grow-1" style="font-weight:700">
+                <%= post.likes.count %>
+              </span>
+            </span>
+            <span class="fa-layers fa-fw" style="background:none">
+              <i class="fas fa-comment shadow" data-fa-transform="grow-12"></i>
+              <span class="fa-layers-text text-muted fa-inverse" data-fa-transform="grow-1" style="font-weight:700">
+                <%= post.comments.count %>
+              </span>
+            </span>
+          </div>
+        </div>
       <% end %>
     </li>
+    <% end %>
   </ul>
 </div>
+<!-- ボタン・リンククリック後に表示される画面の内容 -->
+<!--<%#= render "posts/form", post_new: @post_new %><!--＋Postボタン-->-->
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<!--    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>-->
+<!--    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>-->
+
 
  

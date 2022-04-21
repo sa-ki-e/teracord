@@ -12,12 +12,18 @@ span.mgr-10{
 li.nav-item{
   margin-right: 10px;
 }
-
 //body//
 .container{
   min-height: 100vh;
 }
-
+body {
+  color: #eeeeee;
+  background-color:#313233;
+}
+// .main {
+//   background-image: url("top.png");
+//   background-size: cover;
+// }
 //投稿一覧共通部分//
 ul.index{
   display: flex;
@@ -58,7 +64,6 @@ img{
 .shadow {
   text-shadow: 0 0 3px #313233;
 }
-
 //show//
 .comment-box {
   width: 90%;

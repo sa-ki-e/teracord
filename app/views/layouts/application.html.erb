@@ -12,14 +12,15 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body style="color:#eeeeee;background-color:#313233;">
+  <body>
+    
     <%= render "layouts/header" %>
-    <main>
+    
     <%= yield %>
-    </main>
+    
     <%= render "layouts/footer" %>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><!--この下二行-->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   </body>
 </html>
