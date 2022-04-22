@@ -12,15 +12,15 @@
         <%= @post.genre.name %>
       </button>
       </div>
-      
+
       <div class="float-right mr-2">
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#indexModal">
-          <% link_to posts_path %>一覧へ戻る</button>
+        <%= link_to posts_path, class: "btn btn-light btn-sm" do %>
+          一覧へ戻る<% end %>
         <% if @post.user == current_user %>
-        <button type="button" class="btn btn-light btn-sm">
-          <% link_to edit_post_path(@post.id) %>編集</button>
-        <button type="button" class="btn btn-light btn-sm">
-          <% link_to post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>削除</button>
+
+          <%= link_to edit_post_path(@post.id), class: "btn btn-primary btn-sm" do %>
+          編集<% end %>
+        
         <% end %>
       </div>
     </div>
@@ -47,6 +47,7 @@
   </div>
   <div class="card-body">
     <p class="card-text d-flex flex-wrap">
+      <div class="comment-index">
       <% @post.comments.each do |comment| %>
       <div class="col-12 clearfix">
         <div class="comment-box"><%= comment.comment %>
@@ -64,6 +65,7 @@
         </div>
       </div>
     <% end %>
+    </div>
     </p>
     <div class="text-center">
       <%= form_with model: [@post, @comment] do |f| %>
@@ -73,3 +75,4 @@
     </div>
   </div>
 </div>
+    

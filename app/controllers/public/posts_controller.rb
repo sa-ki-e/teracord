@@ -1,4 +1,5 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   # def new
@@ -9,9 +10,9 @@ class Public::PostsController < ApplicationController
     post = Post.new(post_params)
     post.user_id = current_user.id
     if post.save
-      redirect_to posts_path
+      redirect_to posts_path, notice: '投稿が完了しました'
     else
-      render "new"
+      redirect_to posts_path, notice: '投稿ができませんでした'
     end
   end
 
@@ -38,7 +39,7 @@ class Public::PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to posts_path
+    redirect_to posts_path, notice: '投稿を削除しました'
   end
 
   def search

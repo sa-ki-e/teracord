@@ -1,11 +1,11 @@
-<!--<%# if @post.errors.any? %>-->
-<!--      <%#= @post.errors.count %>error prohibited this obj from being saved:-->
-<!--      <ul>-->
-<!--        <%# @post.errors.full_messages.each do |message| %>-->
-<!--        <li><%#= message %></li>-->
-<!--        <%# end %>-->
-<!--      </ul>-->
-<!--    <%# end %>-->
+<% if @post.errors.any? %>
+      <%= @post.errors.count %>error prohibited this obj from being saved:
+      <ul>
+        <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
 <div class="card text-dark text-center mt-4 mb-4 mx-auto" style="width: 35rem;">
   <h2 class="mt-2 mb-2">
     投稿の編集
@@ -20,25 +20,26 @@
   </div>
   <div class="card-body ml-2 mr-2">
     <%= form_with model: @post, local: true do |f| %>
-    <div class="form-group mt-2">
-      <%= f.label :image, "画像の変更はこちら" %>
-      <%= f.file_field :image, id: :post_image, accept: "image/*" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :genre, "ジャンルの変更はこちら" %>
-      <%= f.collection_select :genre_id, Genre.all, :id, :name, {prompt: "選択してください"}, {class: "new-wrapper__main__input-select"} %>
-    </div>
-    <div class="form-group">
-      <%= f.label :title, "タイトル" %>
-      <%= f.text_field :title, class: "form-control post_title" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :caption, "説明" %>
-      <%= f.text_area :caption, class: "form-control post_caption" %>
-    </div>
-    <div class="form-group">
-      <%= f.submit "保存", class: 'btn btn-success' %>
-    </div>
+      <div class="form-group mt-2">
+        <%= f.label :image, "画像の変更はこちら" %>
+        <%= f.file_field :image, id: :post_image, accept: "image/*" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :genre, "ジャンルの変更はこちら" %>
+        <%= f.collection_select :genre_id, Genre.all, :id, :name, {prompt: "選択してください"}, {class: "new-wrapper__main__input-select"} %>
+      </div>
+      <div class="form-group">
+        <%= f.label :title, "タイトル" %>
+        <%= f.text_field :title, class: "form-control post_title" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :caption, "説明" %>
+        <%= f.text_area :caption, class: "form-control post_caption" %>
+      </div>
+      <div class="form-group">
+        <%= f.submit "保存", class: 'btn btn-success' %>
+        <%= link_to '削除', @post, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger destroy_post_#{@post.id}"%>
+      </div>
     <% end %>
 
     <script type="text/javascript">

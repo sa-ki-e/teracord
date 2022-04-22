@@ -9,7 +9,8 @@
     </a>
     <span class="mgr-10">
       <% if user_signed_in? %>
-      <%= current_user.name %>さん、teracordへようこそ！
+      <%= current_user.name %>さん、teracordへようこそ！</br>
+      <p id="notice"><%= notice %></p>
     </span>
     <%= render "layouts/search" %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
