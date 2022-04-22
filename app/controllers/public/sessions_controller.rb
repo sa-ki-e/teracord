@@ -2,7 +2,9 @@
 
 class Public::SessionsController < Devise::SessionsController
   before_action :user_state, only: [:create]
-  
+
+
+
   protected
     def user_state #退会しているかを判断するメソッド
       @user = User.find_by(email: params[:user][:email])  #emailからアカウントを1件取得
@@ -16,7 +18,7 @@ class Public::SessionsController < Devise::SessionsController
       end
     end
     end
-   
+
 
    def after_sign_in_path_for(resource)
     posts_path(resource)

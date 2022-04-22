@@ -27,6 +27,11 @@ class Public::PostsController < ApplicationController
   end
 
   def edit
+    if @post.user == current_user
+      render "edit"
+    else
+      redirect_to post_path(@post.id)
+    end
   end
 
   def update

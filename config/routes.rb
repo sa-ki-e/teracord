@@ -10,7 +10,9 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root to: "homes#top"
-    resources :users, only: [:show] 
+    get "about" => "homes#about"
+    post 'guest_sign_in' => 'homes#guest_sign_in'
+    resources :users, only: [:show]
     resources :posts do
       resource :likes, only: [:create, :destroy]
       resources:comments, only: [:create, :destroy]
@@ -18,17 +20,8 @@ Rails.application.routes.draw do
         get "search"
       end
     end
-    
-      # get 'posts/new'
-      # get 'posts/index'
-      # get 'posts/show'
-      # get 'posts/edit'
-      # get "posts/create"
   end
-    # namespace :admin do
-    #   get 'users/index'
-    #   get 'users/edit'
-    # end
+
 
   namespace :admin do
     #root to: "users#index" #管理者側TOPページ

@@ -15,9 +15,8 @@
 
       <div class="float-right mr-2">
         <%= link_to posts_path, class: "btn btn-light btn-sm" do %>
-          一覧へ戻る<% end %>
-        <% if @post.user == current_user %>
-
+          閉じる<% end %>
+        <% if @user == current_user %>
           <%= link_to edit_post_path(@post.id), class: "btn btn-primary btn-sm" do %>
           編集<% end %>
         
