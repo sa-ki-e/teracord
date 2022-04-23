@@ -1,14 +1,33 @@
 <div class="bg-about">
-  <div class="container px-4 px-lg-5 h-100">
-    <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
-      <div class="col-lg-8 align-self-end">
-        <h1 class="text-white font-weight-bold">Welcome to teracord!</h1>
-        <hr class="style-one">
+  <div class="box fadeDown">
+    <div class="container px-4 px-lg-5 h-100">
+      <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+        <div class="col-lg-8 mt-5 align-self-end">
+          <h3 class="text-white"></br></br>
+            「好きな写真を振り返りたい」</br></br>
+            「お寺を見て癒されたい」</br></br></br>
+          </h3>
+          <h4>お寺好きの世界観が集まる写真投稿サイト</h4>
+          <h1 class="text-white font-weight-bold">
+            <ruby>tera<rt>テラ</rt>cord<rt>コード</rt></ruby>
+          </h1>
+          <hr class="style-one">
+        </div>
+        <div class="col-lg-8 align-self-baseline">
+          <h6 class="text-white-75 mb-5">
+            <ruby>teracord<rt>テラコード</rt></ruby>はtempleの「お寺」とrecordの「記録」の意味を持つ</br>
+            <ruby>temple record<rt>テンプルレコード</rt></ruby>を略した造語です。</br>
+          </h6>
+          <% if user_signed_in? %>
+            <%= link_to "My Records", user_path(current_user.id), class: "btn btn-outline-light btn-lg" %>
+          <% elsif admin_signed_in? %>
+            <%= link_to "管理者Log out", destroy_admin_session_path, method: :delete, class: "btn btn-outline-light btn-lg" %>
+          <% else %>
+            <%= link_to "Guest log in", guest_sign_in_path, method: :post, class: "btn btn-outline-light btn-lg" %>
+          <% end %>
+        </div>
       </div>
-      <div class="col-lg-8 align-self-baseline">
-        <p class="text-white-75 mb-5">Post your favorite photos and share your memories. Let's keep a record of the temple. And let's be healed by the pictures of the temple.</p>
-        <%= link_to "Guest log in", guest_sign_in_path, method: :post, class: "btn btn-outline-light btn-lg" %>
-      </div>
-      </div>
+    </div>
   </div>
 </div>
+ 

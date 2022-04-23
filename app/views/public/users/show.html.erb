@@ -1,68 +1,70 @@
 <div class="container body text-center my-2">
-  <p class="h3 text-light mt-5 text-center">
-    いいね一覧(全<%= @like_posts.count %>件)
-  </p>
-  <ul class="index my-2">
-    <% @like_posts.each do |post| %>
-    <li class="index_items">
-      <%= link_to post_path(post.id) do %>
-        <% if post.image.attached? %>
-          <%= image_tag post.image, size: "100x100" %>
-        <% else %>
-          <%= image_tag "no_image", size: "100x100" %>
-        <% end %>
-        <div class="card-img-overlay text-light">
-          <div class="records">
-            <span class="fa-layers fa-fw mr-3" style="background:none">
-              <i class="fas fa-heart shadow" data-fa-transform="grow-12"></i>
-              <span class="fa-layers-text text-muted fa-inverse" data-fa-transform="grow-1" style="font-weight:700">
-                <%= post.likes.count %>
+  <div class="box fadeIn">
+    <p class="h3 text-light mt-5 text-center">
+      いいね一覧(全<%= @like_posts.count %>件)
+    </p>
+    <ul class="index my-2">
+      <% @like_posts.each do |post| %>
+      <li class="index_items">
+        <%= link_to post_path(post.id) do %>
+          <% if post.image.attached? %>
+            <%= image_tag post.image, size: "100x100" %>
+          <% else %>
+            <%= image_tag "no_image", size: "100x100" %>
+          <% end %>
+          <div class="card-img-overlay text-light">
+            <div class="records">
+              <span class="fa-layers fa-fw mr-3" style="background:none">
+                <i class="fas fa-heart shadow" data-fa-transform="grow-12"></i>
+                <span class="fa-layers-text text-muted fa-inverse" data-fa-transform="grow-1" style="font-weight:700">
+                  <%= post.likes.count %>
+                </span>
               </span>
-            </span>
-            <span class="fa-layers fa-fw" style="background:none">
-              <i class="fas fa-comment shadow" data-fa-transform="grow-12"></i>
-              <span class="fa-layers-text text-muted fa-inverse" data-fa-transform="grow-1" style="font-weight:700">
-                <%= post.comments.count %>
+              <span class="fa-layers fa-fw" style="background:none">
+                <i class="fas fa-comment shadow" data-fa-transform="grow-12"></i>
+                <span class="fa-layers-text text-muted fa-inverse" data-fa-transform="grow-1" style="font-weight:700">
+                  <%= post.comments.count %>
+                </span>
               </span>
-            </span>
+            </div>
           </div>
-        </div>
-      <% end %>
-    </li>
-    <% end %>
-  </ul>
-  <p class="h3 text-light mt-5 text-center">
-    <%= @user.name %>さんの投稿(全<%= @posts.count %>件)
-  </p>
-  <ul class="index my-2">
-    <% @posts.each do |post| %>
-    <li class="index_items">
-      <%= link_to post_path(post.id) do %>
-        <% if post.image.attached? %>
-          <%= image_tag post.image, size: "100x100" %>
-        <% else %>
-          <%= image_tag "no_image", size: "100x100" %>
         <% end %>
-        <div class="card-img-overlay text-light">
-          <div class="records">
-            <span class="fa-layers fa-fw mr-3" style="background:none">
-              <i class="fas fa-heart shadow" data-fa-transform="grow-12"></i>
-              <span class="fa-layers-text text-muted fa-inverse" data-fa-transform="grow-1" style="font-weight:700">
-                <%= post.likes.count %>
-              </span>
-            </span>
-            <span class="fa-layers fa-fw" style="background:none">
-              <i class="fas fa-comment shadow" data-fa-transform="grow-12"></i>
-              <span class="fa-layers-text text-muted fa-inverse" data-fa-transform="grow-1" style="font-weight:700">
-                <%= post.comments.count %>
-              </span>
-            </span>
-          </div>
-        </div>
+      </li>
       <% end %>
-    </li>
-    <% end %>
-  </ul>
+    </ul>
+    <p class="h3 text-light mt-5 text-center">
+      <%= @user.name %>さんの投稿(全<%= @posts.count %>件)
+    </p>
+    <ul class="index my-2">
+      <% @posts.each do |post| %>
+      <li class="index_items">
+        <%= link_to post_path(post.id) do %>
+          <% if post.image.attached? %>
+            <%= image_tag post.image, size: "100x100" %>
+          <% else %>
+            <%= image_tag "no_image", size: "100x100" %>
+          <% end %>
+          <div class="card-img-overlay text-light">
+            <div class="records">
+              <span class="fa-layers fa-fw mr-3" style="background:none">
+                <i class="fas fa-heart shadow" data-fa-transform="grow-12"></i>
+                <span class="fa-layers-text text-muted fa-inverse" data-fa-transform="grow-1" style="font-weight:700">
+                  <%= post.likes.count %>
+                </span>
+              </span>
+              <span class="fa-layers fa-fw" style="background:none">
+                <i class="fas fa-comment shadow" data-fa-transform="grow-12"></i>
+                <span class="fa-layers-text text-muted fa-inverse" data-fa-transform="grow-1" style="font-weight:700">
+                  <%= post.comments.count %>
+                </span>
+              </span>
+            </div>
+          </div>
+        <% end %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
 </div>
 <!-- ボタン・リンククリック後に表示される画面の内容 -->
 <!--<%#= render "posts/form", post_new: @post_new %><!--＋Postボタン-->-->
